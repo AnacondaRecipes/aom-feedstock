@@ -23,7 +23,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - perl
-    - nasm
+    - nasm      # [x86_64]
     - make      # [unix]
     - patch     # [not win]
     - m2-patch  # [win]
