@@ -23,9 +23,12 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - perl
-    - nasm
-    - make   # [unix]
-
+    - nasm      # [x86_64]
+    # we need binutils for the `as` executable
+    - binutils  # [aarch64]
+    - make      # [unix]
+    - patch     # [not win]
+    - m2-patch  # [win]
 test:
   commands:
     - aomenc --help  # [build_platform == target_platform]
@@ -47,6 +50,7 @@ about:
     AOMedia Video 1 (AV1), is an open, royalty-free video coding format designed for
     video transmissions over the Internet.
   dev_url: https://aomedia.googlesource.com/aom/
+  doc_url: https://aomedia.googlesource.com/aom/
 extra:
   recipe-maintainers:
     - matthiasdiener
