@@ -1,0 +1,20 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -326,14 +326,10 @@ target_include_directories(aom PUBLIC $<INSTALL_INTERFACE:include>)
+ 
+ if(BUILD_SHARED_LIBS)
+   add_library(aom_static STATIC ${target_objs_aom} $<TARGET_OBJECTS:aom_rtcd>)
+   target_include_directories(aom_static PUBLIC $<INSTALL_INTERFACE:include>)
+-  set_target_properties(aom_static PROPERTIES OUTPUT_NAME aom)
+-  if(MSVC OR (WIN32 AND NOT MINGW))
+-    # Fix race condition between the import library and the static library.
+-    # Affects MSVC in all three flavors (stock, clang-cl, LLVM -- the latter
+-    # sets MSVC and MINGW both to FALSE).
+-    set_target_properties(aom PROPERTIES ARCHIVE_OUTPUT_NAME "aom_dll")
+-  endif()
++  # Static lib uses a distinct basename so the DLL import library is aom.lib
++  # (pkg-config -laom and typical MSVC / CMake usage).
++  set_target_properties(aom_static PROPERTIES OUTPUT_NAME aom_static)
+ 
+   if(NOT MSVC)
+     # Extract version string and set VERSION/SOVERSION for the aom target.
