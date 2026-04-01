@@ -20,3 +20,7 @@ if errorlevel 1 exit 1
 
 nmake install
 if errorlevel 1 exit 1
+
+rem Shared-only package: drop static import (matches Unix rm *.a in build.sh)
+if exist "%LIBRARY_LIB%\aom_static.lib" del /f "%LIBRARY_LIB%\aom_static.lib"
+if errorlevel 1 exit 1
