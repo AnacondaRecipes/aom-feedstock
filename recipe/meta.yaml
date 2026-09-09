@@ -1,13 +1,13 @@
 {% set name = "aom" %}
-{% set version = "3.13.2" %}
+{% set version = "3.14.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://storage.googleapis.com/aom-releases/libaom-{{ version }}.tar.gz
-  sha256: 634039cc79c3a3307206b6c25ea759abc0e734c6f4ac14f6dbea5694e46af837
+  sha256: 55852c50eadc1a27229d4840ea14c84f20ede7d85d41cc5827434c63eea1436d
   patches:
     - patches/0001-msvc-import-lib-aom-lib.patch
 
